@@ -1,0 +1,673 @@
+[
+    {
+        "id": "1d58154edbdfb571",
+        "type": "tab",
+        "label": "MQTT Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fb0af654b98445eb",
+        "type": "mqtt in",
+        "z": "1d58154edbdfb571",
+        "name": "",
+        "topic": "/challenge/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aad9b7d6.8b3468",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "b4118d3bd2236054",
+                "4073d4418859efa6"
+            ]
+        ]
+    },
+    {
+        "id": "b4118d3bd2236054",
+        "type": "json",
+        "z": "1d58154edbdfb571",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "5e45abc71a7cb16c",
+                "1c2519588d065a94"
+            ]
+        ]
+    },
+    {
+        "id": "5e45abc71a7cb16c",
+        "type": "switch",
+        "z": "1d58154edbdfb571",
+        "name": "Seletor de Tópico",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/challenge/ambientTemperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/challenge/humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/challenge/batteryTemperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/challenge/voltage",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/challenge/current",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "cb4884171ac51b3f",
+                "938dda65c0d41fd2"
+            ],
+            [
+                "c7cfb9ee7b589ef6",
+                "938dda65c0d41fd2"
+            ],
+            [
+                "023bf1399d459745",
+                "a7715ea0da5b80ca"
+            ],
+            [
+                "fbe23352e74baf22",
+                "a7715ea0da5b80ca"
+            ],
+            [
+                "6e75972b08e685f6",
+                "a7715ea0da5b80ca"
+            ]
+        ]
+    },
+    {
+        "id": "cb4884171ac51b3f",
+        "type": "ui_gauge",
+        "z": "1d58154edbdfb571",
+        "name": "Temperatura Ambiente",
+        "group": "d84d0cb3.1ebff",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperatura Ambiente (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "80",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c7cfb9ee7b589ef6",
+        "type": "ui_gauge",
+        "z": "1d58154edbdfb571",
+        "name": "Umidade",
+        "group": "d84d0cb3.1ebff",
+        "order": 5,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Umidade (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "70",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "023bf1399d459745",
+        "type": "ui_gauge",
+        "z": "1d58154edbdfb571",
+        "name": "Temperatura da Bateria",
+        "group": "3fd66ae3c5ef4648",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperatura da Bateria (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "80",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "fbe23352e74baf22",
+        "type": "ui_gauge",
+        "z": "1d58154edbdfb571",
+        "name": "Tensão",
+        "group": "3fd66ae3c5ef4648",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Tensão (V)",
+        "label": "V",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "70",
+        "colors": [
+            "#ff4747",
+            "#e6e600",
+            "#acf76e"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6e75972b08e685f6",
+        "type": "ui_gauge",
+        "z": "1d58154edbdfb571",
+        "name": "Corrente",
+        "group": "3fd66ae3c5ef4648",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Corrente (A)",
+        "label": "A",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "20",
+        "colors": [
+            "#fd3044",
+            "#e6e600",
+            "#85db57"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5faa59063914fbbd",
+        "type": "ui_text",
+        "z": "1d58154edbdfb571",
+        "group": "792e0773cf2e2130",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "name": "Status",
+        "label": "Status do Sistema :",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "style": true,
+        "font": "Gill Sans,Geneva,sans-serif",
+        "fontSize": "30",
+        "color": "#5bb63a",
+        "x": 810,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "4073d4418859efa6",
+        "type": "debug",
+        "z": "1d58154edbdfb571",
+        "name": "depuração 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1c2519588d065a94",
+        "type": "switch",
+        "z": "1d58154edbdfb571",
+        "name": "statusDeCarga",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/challenge/chargingStatus",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "2f63c36d9488e62d"
+            ]
+        ]
+    },
+    {
+        "id": "a7715ea0da5b80ca",
+        "type": "function",
+        "z": "1d58154edbdfb571",
+        "name": "função 1",
+        "func": "return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 260,
+        "wires": [
+            [
+                "7bb4340898b19591",
+                "4c0798fd4cb204f1"
+            ]
+        ]
+    },
+    {
+        "id": "7bb4340898b19591",
+        "type": "ui_chart",
+        "z": "1d58154edbdfb571",
+        "name": "aa",
+        "group": "792e0773cf2e2130",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Dados da Bateria: Tensão, Corrente, Temperatura",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "cubic",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "80",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 890,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c0798fd4cb204f1",
+        "type": "debug",
+        "z": "1d58154edbdfb571",
+        "name": "depuração 2",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b6a36e6eb38c06a1",
+        "type": "ui_chart",
+        "z": "1d58154edbdfb571",
+        "name": "",
+        "group": "792e0773cf2e2130",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Dados Ambientais: Temperatura, Umidade",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "80",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "938dda65c0d41fd2",
+        "type": "function",
+        "z": "1d58154edbdfb571",
+        "name": "função 2",
+        "func": "return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "b6a36e6eb38c06a1"
+            ]
+        ]
+    },
+    {
+        "id": "2f63c36d9488e62d",
+        "type": "function",
+        "z": "1d58154edbdfb571",
+        "name": "function 1",
+        "func": "// status publicado pelo ESP32 no tópico /challenge/chargingStatus\nconst status = String(msg.payload || \"\").trim();\n\n// não notifica se o status for exatamente \"Ideal\"\nif (status.toLowerCase() === \"ideal\") {\n    return null;\n}\n\n// ID do seu chat (consiga falando com @userinfobot no Telegram)\nconst chatId = 1406632269;  // <-- coloque seu ID aqui\n\n// Monta o texto da notificação\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: `⚠️ O status do sistema mudou para: *${status}*`,\n    options: { parse_mode: \"Markdown\" }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "5faa59063914fbbd",
+                "2bd722916a92c814"
+            ]
+        ]
+    },
+    {
+        "id": "2bd722916a92c814",
+        "type": "telegram sender",
+        "z": "1d58154edbdfb571",
+        "name": "",
+        "bot": "43bda78028aa32a2",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f7e44567d24f7277",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "792e0773cf2e2130",
+        "order": 2,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "40d0ec9c5b9de149",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "d84d0cb3.1ebff",
+        "order": 1,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f0ac0691441e2ad4",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "d84d0cb3.1ebff",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a3e4af0b5695bb9b",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "d84d0cb3.1ebff",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1ccf9de6674c0693",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "d84d0cb3.1ebff",
+        "order": 6,
+        "width": "6",
+        "height": "2"
+    },
+    {
+        "id": "46319e9cbf0ebd7b",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "792e0773cf2e2130",
+        "order": 5,
+        "width": "6",
+        "height": "1"
+    },
+    {
+        "id": "22b2d925203449c5",
+        "type": "ui_spacer",
+        "z": "1d58154edbdfb571",
+        "name": "espaçador",
+        "group": "3fd66ae3c5ef4648",
+        "order": 4,
+        "width": "6",
+        "height": "1"
+    },
+    {
+        "id": "aad9b7d6.8b3468",
+        "type": "mqtt-broker",
+        "name": "moacyr",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d84d0cb3.1ebff",
+        "type": "ui_group",
+        "name": "Dados Ambientais: 🏙️🌡️🍃",
+        "tab": "f499313946464eca",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3fd66ae3c5ef4648",
+        "type": "ui_group",
+        "name": "Dados da Bateria: 🪫⚡🔋",
+        "tab": "f499313946464eca",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "792e0773cf2e2130",
+        "type": "ui_group",
+        "name": "📈📊",
+        "tab": "f499313946464eca",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "43bda78028aa32a2",
+        "type": "telegram bot",
+        "botname": "BatteryGuardianVE_bot",
+        "usernames": "esquecatudoh",
+        "chatids": "‪1406632269‬",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "f499313946464eca",
+        "type": "ui_tab",
+        "name": "Sistema de Monitoramento da Saúde da Bateria para VE — PAINEL",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2d66342c8decbf7f",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-telegrambot": "16.3.3"
+        }
+    }
+]
